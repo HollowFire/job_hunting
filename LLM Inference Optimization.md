@@ -1,5 +1,7 @@
 # LLM inference optimization
 
+https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/
+
 ## Attention optimization
 
 ### Multi-head attention
