@@ -1,0 +1,4 @@
+- position embedding
+- peft
+- inference acceleration
+- stable diffusion
