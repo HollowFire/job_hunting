@@ -2,3 +2,4 @@
 - peft
 - inference acceleration
 - stable diffusion
+- normalization
