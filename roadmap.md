@@ -3,3 +3,4 @@
 - inference acceleration
 - stable diffusion
 - normalization
+- multi-head, multi-query and grouped-query attention
