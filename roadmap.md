@@ -4,3 +4,4 @@
 - stable diffusion
 - normalization
 - multi-head, multi-query and grouped-query attention
+- bf16, fp16 and quantization
