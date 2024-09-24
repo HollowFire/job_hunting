@@ -1,7 +1,9 @@
-- position embedding
+- position embedding: yarm
 - peft
 - inference acceleration
 - stable diffusion
 - normalization
 - multi-head, multi-query and grouped-query attention
 - bf16, fp16 and quantization
+- 传统搜索的经典业务流程
+- llama3.1 post training
