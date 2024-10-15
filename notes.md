@@ -19,3 +19,12 @@
 5. Agent构建
 - 当前的agent平台提供了单prompt的自动构建功能，实际效果可能不如有一定经验的人手写prompt
 - 未来的agent构建是需要不同角色的联结，即多agent构建。达到两个效果：构建不同的agent角色和他们的联结逻辑；允许用户修改单个角色的职责功能，并自动进行上下游角色修正
+
+6. DPO vs PPO
+- https://mp.weixin.qq.com/s/mhPJzhQvPJlAWsO2nW9BHg
+
+7. Quantization & Overflow
+- https://blog.csdn.net/qq_43799400/article/details/134182459
+- https://zhuanlan.zhihu.com/p/657886517?theme=dark
+- fp32(1+8+23), fp16(1+5+10, 精度0.001), bf16(1+8+7, 精度0.01)
+- 
