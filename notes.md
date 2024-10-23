@@ -27,4 +27,8 @@
 - https://blog.csdn.net/qq_43799400/article/details/134182459
 - https://zhuanlan.zhihu.com/p/657886517?theme=dark
 - fp32(1+8+23), fp16(1+5+10, 精度0.001), bf16(1+8+7, 精度0.01)
-- 
+
+8. GPT-o1
+- 强化学习（Let's verify step by step），结果监督（通过针对数学、变成问题的编译或验证器）模型、中间步骤监督模型
+- 推理过程的隐藏CoT
+- 在普通的文本编辑、撰写、语言风格转换上劣于GPT-o模型
