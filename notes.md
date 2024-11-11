@@ -41,6 +41,6 @@
 - 在普通的文本编辑、撰写、语言风格转换上劣于GPT-o模型
 
 9. PreNorm vs PostNorm
-- PreNorm是在残差之后进行归一化，模型的鲁棒性更强
-- PostNorm不是所有参数都被正则化，整体更不容易发生梯度消失的问题
+- PostNorm是在残差之后进行归一化，模型的鲁棒性更强
+- PreNorm不是所有参数都被正则化，有shortcut（residual connection），整体更不容易发生梯度消失的问题
 - 对于浅层模型，梯度消失问题并不大，因此采用PostNorm，而对于深度模型例如llama，则是采用PreNorm
