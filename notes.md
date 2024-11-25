@@ -53,3 +53,5 @@
 - offloading: CPU, DRAMs and SSDs可以用于offloading
 - Overlapping network and compute.
 - sequence 并行是什么？
+- Megatron PTD-P: TP计算并行利用了连续两个矩阵乘法时，可以先列切再行切，使得卡间通信可以减少3次（一次中间切分的前后通信，和一次中间的all gather），例如MLP和Dropout(Self_attention())操作可以采用
+- 
