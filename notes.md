@@ -44,3 +44,12 @@
 - PostNorm是在残差之后进行归一化，模型的鲁棒性更强
 - PreNorm不是所有参数都被正则化，有shortcut（residual connection），整体更不容易发生梯度消失的问题
 - 对于浅层模型，梯度消失问题并不大，因此采用PostNorm，而对于深度模型例如llama，则是采用PreNorm
+
+10. distributed training
+- https://shivambharuka.medium.com/deep-learning-a-primer-on-distributed-training-part-1-d0ae0054bb1c
+- All Reduce = Reduce Scatter + All Gather: 以Ring算法为例，每个阶段都有N-1个传递步骤，在Reduce Scatter阶段完成后，每个节点能拿到某一个chunk的完整数据，在All Gather阶段完成后，所有节点都能拿到所有的完成chunk。在分布式训练过程中，有基于gradient和基于parameter的All Reduce算法，前者是在optimizer步骤之前，在所有节点之间同步梯度值，后者是在每个训练步骤完成后，在所有节点之间同步模型参数。基于gradient的All Reduce是data parallel中常用的方法。
+- Zero. 每个节点只保存1/N的optimizer状态，并只更新相应的1/N参数。因此在梯度同步阶段，只执行reduce scatter，执行完之后，每个节点就拥有它那部分参数的所有optimizer状态，因此可以通过更新获得该部分参数的最终更新值。最后在All gather阶段，所有节点都能获得完整的参数。
+- activation checkpoints. 对神经网络进行分层，仅保留层间的activation用于重新计算前向
+- offloading: CPU, DRAMs and SSDs可以用于offloading
+- Overlapping network and compute.
+- sequence 并行是什么？
