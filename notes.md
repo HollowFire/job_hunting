@@ -28,6 +28,7 @@
 6. DPO vs PPO
 - https://mp.weixin.qq.com/s/mhPJzhQvPJlAWsO2nW9BHg
 - 从模型输入输出讲ppo实现的：https://www.cnblogs.com/jiangxinyang/p/17553815.html
+- https://zhuanlan.zhihu.com/p/654050961
 - 优势函数的构造：首先是reward，只有在最后一个token有值，根据reward模型输出得到，其余位置是0。然后是kl散度，每个位置上token在此表上的概率分布，通过kl散度约束policy模型与ref模型之间的分布差距，因此reward要减去kl散度。接下来考虑的是通过critic模型预测的价值，这个价值指的是对当前状态能够获得平均收益的预估，因此在每个位置上，它的优势函数还需要加入两个部分，一个是它采取下个动作能够获得的预期收益，然后减去它当前状态能够获得的平均收益，这个差值就能衡量出当前采取策略获得的收益相较于平均收益的增量，然后把这个值加在reward上，就是优势函数。
 - PPO实际上证明了reward函数与优劣策略之间的映射关系，将reward的最大化问题转换成了优劣策略的分类问题
 
@@ -83,3 +84,10 @@
   - warmup-ratio，学习率越大，需要设置该值越大。srf通常样本较少，ratio也适当减少
   - epoch，通常需根据loss收敛情况来设置，过少欠拟合，过多过拟合，10w样本1-2个epoch即可收敛
 - srf过程中loss会先升后降：可以理解模型在接触到了新的数据分布时，逐渐调整参数过程。
+
+13. 梯度爆炸问题：
+- 输入数据中有Nan
+- 没有zero_grad
+- 模型结构上是否有layerNorm或batchNorm
+- optimizer中加入eps防止除以0现象
+- 增加grad clipping梯度剪切，在optimizer.step之前调用torch工具进行剪切
