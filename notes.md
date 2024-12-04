@@ -30,7 +30,7 @@
 - 从模型输入输出讲ppo实现的：https://www.cnblogs.com/jiangxinyang/p/17553815.html
 - https://zhuanlan.zhihu.com/p/654050961
 - 优势函数的构造：首先是reward，只有在最后一个token有值，根据reward模型输出得到，其余位置是0。然后是kl散度，每个位置上token在此表上的概率分布，通过kl散度约束policy模型与ref模型之间的分布差距，因此reward要减去kl散度。接下来考虑的是通过critic模型预测的价值，这个价值指的是对当前状态能够获得平均收益的预估，因此在每个位置上，它的优势函数还需要加入两个部分，一个是它采取下个动作能够获得的预期收益，然后减去它当前状态能够获得的平均收益，这个差值就能衡量出当前采取策略获得的收益相较于平均收益的增量，然后把这个值加在reward上，就是优势函数。
-- PPO实际上证明了reward函数与优劣策略之间的映射关系，将reward的最大化问题转换成了优劣策略的分类问题
+- DPO实际上证明了reward函数与优劣策略之间的映射关系，将reward的最大化问题转换成了优劣策略的分类问题
 
 7. Quantization & Overflow
 - https://blog.csdn.net/qq_43799400/article/details/134182459
