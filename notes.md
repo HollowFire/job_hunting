@@ -66,7 +66,7 @@
 - 在相同的预训练困惑度下，稀疏模型在下游任务中的表现不如对应的稠密模型
 - 仅冻结 MoE 层的参数。实验结果显示，这种方法几乎与更新所有参数的效果相当。这种做法可以加速微调过程，并降低显存需求。
 - MoE 模型可能从指令式微调中获益更多，甚至超过了稠密模型。此外，MoE 在多任务学习中表现更佳。
-- LoRA一般用在transformer的哪个位置？
+- LoRA一般用在transformer的哪个位置？Self=attention
 - 辅助损失：
   - router z loss：惩罚过大的logits值，router_z_loss = (log(sum(exp(router_logits))) ** 2).mean()
   - 负载均衡损失：衡量每个专家应该平均分配的token数量和它按照router得到的token数量之间的差距
@@ -84,7 +84,7 @@
   - 资源足够，只考虑目标领域任务，选择base + continue pretrain + 目标任务srf
   - 资源不够，选择chat + continue pretrain + 目标任务srf
 - 训练超参：
-  - 学习率，srf为pretrain的十分之一，10^-5左右。不收敛可以考虑降低学习率
+  - 学习率，sft为pretrain的十分之一，10^-5左右。不收敛可以考虑降低学习率
   - warmup-ratio，学习率越大，需要设置该值越大。srf通常样本较少，ratio也适当减少
   - epoch，通常需根据loss收敛情况来设置，过少欠拟合，过多过拟合，10w样本1-2个epoch即可收敛
 - srf过程中loss会先升后降：可以理解模型在接触到了新的数据分布时，逐渐调整参数过程。
